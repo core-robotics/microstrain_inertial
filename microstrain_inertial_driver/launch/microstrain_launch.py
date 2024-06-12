@@ -8,6 +8,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
+from launch_ros.actions.node import ParameterFile
 
 from lifecycle_msgs.msg import Transition
 from ament_index_python.packages import get_package_share_directory
@@ -50,7 +51,7 @@ def generate_launch_description():
       yaml.safe_load(open(_DEFAULT_PARAMS_FILE, 'r')),
 
       # If you want to override any settings in the params.yml file, make a new yaml file, and set the value via the params_file arg
-      LaunchConfiguration('params_file'),
+      ParameterFile(LaunchConfiguration('params_file'), allow_substs=True),
 
       # Supported overrides
       {

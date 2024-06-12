@@ -137,6 +137,7 @@ ament_export_dependencies(
 list(APPEND CMAKE_MODULE_PATH "/usr/share/cmake/geographiclib/")
 find_package(Eigen3 REQUIRED)
 find_package(GeographicLib REQUIRED)
+find_package(yaml-cpp REQUIRED)
 
 # We want to use the static library for libgeographic, but it doesn't seem to find it for us, so substitute it here
 string(REGEX REPLACE "[.]so[^\\/\\s]*$" ".a" GeographicLib_LIBRARIES ${GeographicLib_LIBRARIES})
@@ -148,6 +149,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIRS}
   ${GeographicLib_INCLUDE_DIRS}
+  ${YAML_CPP_INCLUDE_DIR}
 )
 
 ament_package()
@@ -160,6 +162,8 @@ set(COMMON_SRC_FILES
   ${COMMON_SRC_DIR}/config.cpp
 
   ${COMMON_SRC_DIR}/utils/clock_bias_monitor.cpp
+
+  ${COMMON_SRC_DIR}/utils/events_yaml.cpp
 
   ${COMMON_SRC_DIR}/utils/mappings/mip_mapping.cpp
   ${COMMON_SRC_DIR}/utils/mappings/mip_publisher_mapping.cpp
@@ -177,7 +181,10 @@ set(COMMON_INC_FILES
   ${COMMON_INC_DIR}/services.h
   ${COMMON_INC_DIR}/config.h
   ${COMMON_INC_DIR}/utils/ros_compat.h
+
   ${COMMON_INC_DIR}/utils/clock_bias_monitor.h
+
+  ${COMMON_INC_DIR}/utils/events_yaml.h
 
   ${COMMON_INC_DIR}/utils/mappings/mip_mapping.h
   ${COMMON_INC_DIR}/utils/mappings/mip_publisher_mapping.h
@@ -270,10 +277,12 @@ endif()
 target_link_libraries(${LIFECYCLE_NAME}
   mip
   ${GeographicLib_LIBRARIES}
+  ${YAML_CPP_LIBRARIES}
 )
 target_link_libraries(${NODE_NAME}
   mip
   ${GeographicLib_LIBRARIES}
+  ${YAML_CPP_LIBRARIES}
 )
 
 #############
