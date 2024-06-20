@@ -29,3 +29,7 @@ filter_pps_source : 0
 
 # Disable the filter declination source. This is required to get the node to start, and isn't doing anything special
 filter_declination_source : 1
+
+# Event configuration
+events_config: true
+events_config_file: "$(find microstrain_inertial_driver)/microstrain_inertial_driver_common/config/events/example.yml"
