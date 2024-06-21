@@ -179,3 +179,9 @@ To run this example, run the following command after doing the [common steps](#c
 ```bash
 roslaunch microstrain_inertial_examples cv7_ins_nmea_aux.launch
 ```
+
+This example contains the following files:
+
+* [`launch/cv7_ins_nmea_aux.launch`](./launch/cv7_ins_nmea_aux.launch)
+* [`config/cv7_ins_nmea_aux/cv7_ins.yml`](./config/cv7_ins_nmea_aux/cv7_ins.yml)
+* [`config/cv7_ins_nmea_aux/display.rviz`](./config/cv7_ins_nmea_aux/display.rviz)
